@@ -1,0 +1,39 @@
+-- Criação do Banco de Dados
+CREATE DATABASE jessica_bueno;
+USE jessica_bueno;
+
+-- Tabela User
+CREATE TABLE User (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    lastname VARCHAR(100),
+    email VARCHAR(100),
+    password VARCHAR(200),
+    image VARCHAR(200),
+    bio TEXT,
+    token VARCHAR(200)
+);
+
+-- Tabela movies
+CREATE TABLE movies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100),
+    description TEXT,
+    image VARCHAR(200),
+    trailer VARCHAR(150),
+    category VARCHAR(100),
+    length VARCHAR(150),
+    User_id INT,
+    FOREIGN KEY (User_id) REFERENCES User(id)
+);
+
+-- Tabela reviews
+CREATE TABLE reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rate INT,
+    review TEXT,
+    movies_id INT,
+    User_id INT,
+    FOREIGN KEY (movies_id) REFERENCES movies(id),
+    FOREIGN KEY (User_id) REFERENCES User(id)
+);
